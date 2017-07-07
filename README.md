@@ -1,0 +1,2 @@
+# CyclePictureView
+基于UIScrollView实现的图片轮播器
