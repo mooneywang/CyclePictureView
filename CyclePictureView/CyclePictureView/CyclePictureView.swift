@@ -83,6 +83,8 @@ class CyclePictureView: UIView, UIScrollViewDelegate {
         scrollView.delegate = self
         self.addSubview(scrollView)
         imageScrollView = scrollView
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        imageScrollView.addGestureRecognizer(tapGesture)
     }
 
     private func setupImageView() {
@@ -164,6 +166,12 @@ class CyclePictureView: UIView, UIScrollViewDelegate {
 
     private func stopTimer() {
         timer.invalidate()
+    }
+
+    @objc private func tapAction() {
+        if let delegate = delegate {
+            delegate.cyclePictureViewDidSelectAt(index: pageController.currentPage)
+        }
     }
 
     // MARK: - UIScrollViewDelegate
